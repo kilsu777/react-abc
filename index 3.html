@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="loading">
+        <h3>Now Loading ...</h3>
+    </div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function Btn({ changeValue, text, fontSize = 14 }) {
+        console.log(text, "renderd");
+        return <button
+            onClick={changeValue}
+            style={{
+                backgroundColor: "tomato",
+                color: "white",
+                padding: "10px 20px",
+                border: 0,
+                borderRadius: 10,
+                fontSize,
+            }}
+        >
+            {text}
+        </button>
+    }
+    Btn.propTypes = {
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number,
+    }
+    const MemorizedBtn = React.memo(Btn);
+    function App() {
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = () => {
+            // console.log("changeValue");
+            setValue("Revert Changes");
+        }
+        return (
+            <div>
+                <MemorizedBtn changeValue={changeValue} text={value} fontSize={20} />
+                &nbsp;
+                <MemorizedBtn text="Continue" />
+            </div>
+        );
+    }
+    const root = document.querySelector("#root");
+    ReactDOM.render(<App />, root);
+</script>
+<script>
+    // setTimeout(() => {
+    loading = document.querySelector("#loading");
+    loading.classList.add("hidden");
+    // }, 100);
+</script>
+
+</html>

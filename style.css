@@ -1,0 +1,15 @@
+.customBtn {
+    font-size: 18px;
+    /* color: blueviolet; */
+    width: 300px;
+    background-color: skyblue;
+    margin: 12px;
+    padding: 6px 12px;
+    border: 2px solid green;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

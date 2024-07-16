@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="loading">
+        <h3>Now Loading ...</h3>
+    </div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function MunitesTomiles() {
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+        };
+        const reset = () => {
+            setAmount(0);
+        };
+        const onInvert = () => {
+            reset();
+            // setInverted(!inverted);
+            setInverted((current) => !current);
+        };
+        return (
+            <div>
+                {/* <h1>Super Converter</h1> */}
+                <div>
+                    <label htmlFor="Km">Km</label>
+                    <input
+                        id="Km"
+                        placeholder="Km"
+                        type="number"
+                        onChange={onChange}
+                        value={inverted ? amount * 60 : amount}
+                        disabled={inverted}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="miles">miles</label>
+                    <input
+                        id="miles"
+                        placeholder="miles"
+                        type="number"
+                        onChange={onChange}
+                        value={inverted ? amount : Math.round(amount / 60 * 10) / 10}
+                        disabled={!inverted}
+                    />
+                </div>
+                <div>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onInvert}>{inverted ? "Turn back" : "Invert"}</button>
+                </div>
+            </div>
+        );
+    }
+    function KmToMiles() {
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+        };
+        const reset = () => {
+            setAmount(0);
+        };
+        const onInvert = () => {
+            reset();
+            // setInverted(!inverted);
+            setInverted((current) => !current);
+        };
+        return (
+            <div>
+                {/* <h1>Super Converter</h1> */}
+                <div>
+                    <label htmlFor="Km">Km</label>
+                    <input
+                        id="Km"
+                        placeholder="Km"
+                        type="number"
+                        onChange={onChange}
+                        value={inverted ? Math.round(amount * 1.60934 * 10) / 10 : amount}
+                        disabled={inverted}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="miles">miles</label>
+                    <input
+                        id="miles"
+                        placeholder="miles"
+                        type="number"
+                        onChange={onChange}
+                        value={inverted ? amount : Math.round(amount / 1.6 * 10) / 10}
+                        disabled={!inverted}
+                    />
+                </div>
+                <div>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onInvert}>{inverted ? "Turn back" : "Invert"}</button>
+                </div>
+            </div>
+        );
+    }
+    function App() {
+        const [index, setIndex] = React.useState("N");
+        const onSelect = (event) => {
+            setIndex(event.target.value);
+        }
+        return (
+            <div>
+                <h1>Super Converter</h1>
+                <select onChange={onSelect} value={index}>
+                    <option value="N">Select a Unit</option>
+                    <option value="0">Munites - miles</option>
+                    <option value="1">Km - Miles</option>
+                </select>
+                <hr />
+                {index === "0" ? <MunitesTomiles /> : null}
+                {index === "1" ? <KmToMiles /> : null}
+            </div>
+        );
+    }
+    const root = document.querySelector("#root");
+    ReactDOM.render(<App />, root);
+</script>
+<script>
+    // setTimeout(() => {
+    loading = document.querySelector("#loading");
+    loading.classList.add("hidden");
+    // }, 100);
+</script>
+
+</html>

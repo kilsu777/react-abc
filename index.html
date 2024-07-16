@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="loading">
+        <h3>Now Loading ...</h3>
+    </div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.querySelector("#root");
+    // function Title() {
+    //     return (
+    //         <h3 id="title" onMouseEnter={() => console.log("Mouse Entered")}>
+    //             Hello Test Span
+    //         </h3>
+    //     );
+    // }
+    // const Button = () => (
+    //     <button style={
+    //         { backgroundColor: "tomato" }
+    //     } onClick={() => {
+    //         console.log("OK"); alert("Why clicked me?");
+    //     }}>
+    //         Click Me
+    //     </button>
+    // );
+    // const h3 = React.createElement(
+    //     "h3", {
+    //         onMouseEnter: () => console.log("Mouse Entered"),
+    //     }, "Hello Test Span",
+    // );
+    // const btn = React.createElement("button", {
+    //     onClick: () => {
+    //         console.log("OK");
+    //         alert("Why clicked me?");
+    //     },
+    //     style: {
+    //         backgroundColor: "tomato",
+    //     }
+    // }, "Click Me");
+    // const container = React.createElement("div", null, [h3, btn]);
+    // const container = React.createElement("div", null, [Title, Button]);
+
+    let counter = 0;
+    // function counterUp() {
+    //     counter++;
+    //     _render();
+    // }
+    // function _render() {
+    //     ReactDOM.render(<Container />, root);
+    // }
+    // function Container() {
+    //     return (
+    //         <div>
+    //             <h3>Total Clicks: {counter}</h3>
+    //             <button onClick={counterUp}>Click Me</button>
+    //         </div>
+    //     );
+    // }
+    // _render();
+
+    function App() {
+        const data = React.useState(0);
+        // const counter = data[0];
+        // const modifier = data[1];
+        const [counter, modifier] = React.useState(0);
+        const onClick = () => {
+            // modifier(counter + 1);
+            modifier((counter) => counter + 1);
+        }
+        console.log("go rendering");
+        return (
+            <div>                
+                <button class="customBtn" onClick={onClick}>Click Me : {counter}</button>
+            </div>
+        );
+    }
+    ReactDOM.render(<App />, root);
+</script>
+<script>
+    // setTimeout(() => {
+        loading = document.querySelector("#loading");
+        loading.classList.add("hidden");
+    // }, 100);
+</script>
+
+</html>
